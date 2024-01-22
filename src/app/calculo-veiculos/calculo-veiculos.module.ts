@@ -5,6 +5,7 @@ import { CalculoVeiculosRoutingModule } from './calculo-veiculos-routing.module'
 import { DadosVeiculoComponent } from './components/dados-veiculo/dados-veiculo.component';
 import { ResultadoCalculoVeiculoComponent } from './components/resultado-calculo-veiculo/resultado-calculo-veiculo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 
 @NgModule({
@@ -16,7 +17,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     CalculoVeiculosRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe
+  ],
+  providers: [
+    provideNgxMask()
   ]
 })
 export class CalculoVeiculosModule { }

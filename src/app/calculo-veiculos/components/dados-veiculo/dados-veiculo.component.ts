@@ -6,7 +6,9 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'app-dados-veiculo',
   templateUrl: './dados-veiculo.component.html',
-  styleUrls: ['./dados-veiculo.component.scss']
+  styleUrls: ['./dados-veiculo.component.scss'],
+
+  
 })
 export class DadosVeiculoComponent {
 
