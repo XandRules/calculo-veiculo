@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FipeService } from '../../services/fipe.service';
 import { filter } from 'rxjs';
+import { CalculoVendaService } from '../../services/calculo-venda.service';
+import { Veiculo } from '../../models/veiculo.model';
+import { CalculoVeiculo } from '../../models/calculo-venda.model';
 
 @Component({
   selector: 'app-dados-veiculo',
@@ -16,11 +19,13 @@ export class DadosVeiculoComponent {
   public marcas: any[] = [];
   public modelos: any[] = [];
   public anoFabricacao: any[] = [];
-  public dadosDoVeiculo: any = null;
+  public dadosDoVeiculo!: Veiculo;
+  dadosCalculados!: CalculoVeiculo;
 
   constructor(
      private formBuilder: FormBuilder,
-     private fipeService: FipeService
+     private fipeService: FipeService,
+     private calculoVendaService: CalculoVendaService
     ){
     this.formVeiculo = this.formBuilder.group({
       tipoVeiculo: new FormControl('', [Validators.required]),
@@ -35,6 +40,7 @@ export class DadosVeiculoComponent {
    this.buscaMarcas();
    this.buscaModelos();
    this.buscaAnoFabricacao();
+   this.buscaInformacoesVeiculo();
   }
 
   get tipoVeiculoForm() {
@@ -49,8 +55,8 @@ export class DadosVeiculoComponent {
     return this.formVeiculo.controls['modeloVeiculo'].getRawValue();
   }
 
-  get anoFabricaoForm() {
-    return this.formVeiculo.controls['anoVeiculo'].getRawValue();
+  get valorVeiculoUsuario() {
+    return this.formVeiculo.controls['valorVeiculo'].getRawValue();
   }
 
   buscaMarcas(){
@@ -82,9 +88,29 @@ export class DadosVeiculoComponent {
     });
   }
 
-  pesquisar(){
-    this.fipeService.getPrecoVeiculo(this.tipoVeiculoForm, this.marcaVeiculoForm, this.modeloVeiculoForm, this.anoFabricaoForm)
+  buscaInformacoesVeiculo(){
+
+    this.formVeiculo.controls['anoVeiculo'].valueChanges.pipe(
+      filter((anoFabricacao) => anoFabricacao !== null)
+    )
+    .subscribe((anoFabricacao) => {
+      this.fipeService.getPrecoVeiculo(this.tipoVeiculoForm, this.marcaVeiculoForm, this.modeloVeiculoForm, anoFabricacao)
     .subscribe((resposta) => this.dadosDoVeiculo = resposta)
+    });
+  }
+
+
+
+  pesquisar(){
+   const dadosCalculo = this.calculoVendaService.calcularVendaVeiculo(this.valorVeiculoUsuario, this.formatarValorFipe());
+
+   this.dadosCalculados = dadosCalculo;
+  }
+
+  private formatarValorFipe(){
+    const valorFipe = this.dadosDoVeiculo.Valor.replace('R$','').trim().replaceAll('.','').split(',');
+
+    return +valorFipe[0];
   }
 
 }

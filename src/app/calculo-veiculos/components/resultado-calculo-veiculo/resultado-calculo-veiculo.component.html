@@ -1,4 +1,4 @@
-<div class="container col col-md-12 col-sm-12">
+<div class="container col col-md-12 col-sm-12" *ngIf="dados && dadosVendaUsuario">
 
     <div class="row g-3 mt-5">
         <div class="col col-md-6 col-sm-12">
@@ -6,35 +6,35 @@
             <!-- Marca -->
             <div class="d-flex flex-row bd-highlight mb-3 justify-content-around">
                 <p class="fw-bolder col-md-3">Marca: </p>
-                <p class="fw-normal col-md-3 ">Fiat </p>
+                <p class="fw-normal col-md-3 ">{{dados.Marca}} </p>
             </div>
             <!-- Fim Marca -->
 
             <!-- Modelo -->
             <div class="d-flex flex-row bd-highlight mb-3 justify-content-around">
                 <p class="fw-bolder col-md-3">Modelo: </p>
-                <p class="fw-normal col-md-3 ">Fiorino </p>
+                <p class="fw-normal col-md-3 ">{{dados.Modelo}} </p>
             </div>
             <!-- Fim Modelo -->
 
             <!-- Ano fabricação -->
             <div class="d-flex flex-row bd-highlight mb-3 justify-content-around">
                 <p class="fw-bolder col-md-3">Ano fabricação: </p>
-                <p class="fw-normal col-md-3 ">2000 </p>
+                <p class="fw-normal col-md-3 ">{{dados.AnoModelo}} </p>
             </div>
             <!-- Fim Ano fabricação -->
 
             <!-- Código FIPE -->
             <div class="d-flex flex-row bd-highlight mb-3 justify-content-around">
                 <p class="fw-bolder col-md-3">Código FIPE: </p>
-                <p class="fw-normal col-md-3 ">11111-3 </p>
+                <p class="fw-normal col-md-3 ">{{dados.CodigoFipe}} </p>
             </div>
             <!-- Fim Código FIPE -->
 
             <!-- Mês referência -->
             <div class="d-flex flex-row bd-highlight mb-3 justify-content-around">
                 <p class="fw-bolder col-md-3">Mês referência: </p>
-                <p class="fw-normal col-md-3 ">01/2024 </p>
+                <p class="fw-normal col-md-3 ">{{dados.MesReferencia}} </p>
             </div>
             <!-- Fim Mês referência -->
 
@@ -43,32 +43,32 @@
              <!-- Valor do veículo -->
              <div class="d-flex flex-row bd-highlight mb-3 justify-content-around">
                 <p class="fw-bolder col-md-3">Valor do veículo: </p>
-                <p class="fw-normal col-md-3 ">R$ 140.112,11 </p>
+                <p class="fw-normal col-md-3 ">{{dadosVendaUsuario.valorUsuario | currency:'BRL'}} </p>
             </div>
             <!-- Fim Valor do veiculo -->
 
             <!-- Modelo -->
             <div class="d-flex flex-row bd-highlight mb-3 justify-content-around">
                 <p class="fw-bolder col-md-3">Valor pela Fipe: </p>
-                <p class="fw-normal col-md-3 ">R$ 80.789,00 </p>
+                <p class="fw-normal col-md-3 ">{{dados.Valor}} </p>
             </div>
             <!-- Fim Modelo -->
 
             <!-- Mensagem -->
             <div class="d-flex flex-row bd-highlight justify-content-center m-0">
-                <p class="fw-bolder col-md-6 red">Valor acima da tabela Fipe </p>
+                <p class="fw-bolder col-md-6 red">{{dadosVendaUsuario.mensagem}} </p>
             </div>
             <!-- Fim Mensagem -->
 
             <!-- Porcentagem -->
             <div class="d-flex flex-row bd-highlight justify-content-center">
-                <p class="fw-bolder col-md-6 mensagem float-start red">12.9% </p>
+                <p class="fw-bolder col-md-6 mensagem float-start red">{{dadosVendaUsuario.percentual}} %</p>
             </div>
             <!-- Fim Porcentagem -->
         </div>
 
         <div class="alert alert-danger" role="alert">
-            Valor acima do mercado!
+            {{dadosVendaUsuario.mensagem}}
           </div>
     </div>
 

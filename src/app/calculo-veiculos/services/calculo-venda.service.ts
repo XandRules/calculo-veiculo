@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
+import { CalculoVeiculo } from '../models/calculo-venda.model';
 
-interface CalculoVeiculo {
-  mensagem: string;
-  percentual: number;
-}
+
 
 enum MensagemEnum {
   'valorMedio' = 'Valor do veículo na média da tabela FIPE',
@@ -20,13 +18,13 @@ export class CalculoVendaService {
 
   calcularVendaVeiculo(valorUsuario: number, valorFipe: number): CalculoVeiculo {
 
-    const valorPercentual = ((valorUsuario - valorFipe) / valorFipe) * 100;
+    const valorPercentual = (((valorUsuario - valorFipe) / valorFipe) * 100).toPrecision(2);
 
-    return this.verificarPercentual(valorPercentual);
+    return this.verificarPercentual(+valorPercentual, valorUsuario);
 
   }
 
-  private verificarPercentual(valorCalculadoVendaPelaFipe: number): CalculoVeiculo{
+  private verificarPercentual(valorCalculadoVendaPelaFipe: number, valorUsuario: number): CalculoVeiculo{
 
 
     let mensagem = MensagemEnum.valorMedio;
@@ -39,7 +37,8 @@ export class CalculoVendaService {
 
     return {
       mensagem: mensagem,
-      percentual: valorCalculadoVendaPelaFipe
+      percentual: valorCalculadoVendaPelaFipe,
+      valorUsuario : valorUsuario,
     };
 
   }

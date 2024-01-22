@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Veiculo } from '../../models/veiculo.model';
+import { CalculoVeiculo } from '../../models/calculo-venda.model';
 
 @Component({
   selector: 'app-resultado-calculo-veiculo',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./resultado-calculo-veiculo.component.scss']
 })
 export class ResultadoCalculoVeiculoComponent {
+
+  @Input() dados!: Veiculo;
+  @Input() dadosVendaUsuario!: CalculoVeiculo;
 
 }

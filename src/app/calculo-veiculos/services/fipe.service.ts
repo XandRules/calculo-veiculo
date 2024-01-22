@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Veiculo } from '../models/veiculo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class FipeService {
     return this.http.get<any>(`${this.pathUrl}${tipoVeiculo}/marcas/${codigoMarca}/modelos/${modeloVeiculo}/anos`);
   }
 
-  getPrecoVeiculo(tipoVeiculo: string, codigoMarca: number, modeloVeiculo: number, anoFabricacao: number): Observable<any>{
+  getPrecoVeiculo(tipoVeiculo: string, codigoMarca: number, modeloVeiculo: number, anoFabricacao: number): Observable<Veiculo>{
 
     return this.http.get<any>(`${this.pathUrl}${tipoVeiculo}/marcas/${codigoMarca}/modelos/${modeloVeiculo}/anos/${anoFabricacao}`);
   }
