@@ -5,51 +5,56 @@
     <form [formGroup]="formVeiculo">
 
         <div class="row g-3 mt-5">
+            <!-- Veículo -->
             <div class="col col-sm-12 col-md-3"> 
                 <label for="tipo" class="form-label">Tipo de veículo</label> 
                 <select id="tipo" formControlName="tipoVeiculo"
                     class="form-select" aria-label="Selecione o tipo de veiculo">
-                    <option selected>Veículo</option>
                     <option value="carros">Carro</option>
                     <option value="motos">Moto</option>
                     <option value="caminhoes">Caminhão</option>
                 </select> 
             </div>
 
-            <div class="col col-sm-12 col-md-3"> <label for="marca" class="form-label">Marca</label> 
+            
+            <!-- Marca -->
+            <div class="col col-sm-12 col-md-3" > <label for="marca" class="form-label">Marca</label> 
                 <select id="marca" class="form-select" formControlName="marcaVeiculo"
-                    aria-label="Selecione a marca do veiculo">
+                    aria-label="Selecione a marca do veiculo" [disabled]="!marcas">
                     <option *ngFor="let marca of marcas" [value]="marca.codigo">{{marca.nome}}</option>
                     
                 </select>
             </div>
 
+            <!-- Modelo -->
             <div class="col col-sm-12 col-md-3"> <label for="modelo" class="form-label">Modelo</label>
                  <select id="modelo" class="form-select" formControlName="modeloVeiculo"
-                    aria-label="Selecione o tipo de veiculo">
+                    aria-label="Selecione o tipo de veiculo" [disabled]="!modelos">
                     <option *ngFor="let modelo of modelos" [value]="modelo.codigo">{{modelo.nome}}</option>
                 </select> 
             </div>
 
+            <!-- Ano -->
             <div class="col col-sm-12 col-md-3"> <label for="ano" class="form-label">Ano</label> 
                 <select id="ano" class="form-select" formControlName="anoVeiculo"
-                    aria-label="Selecione o ano do veiculo">
+                    aria-label="Selecione o ano do veiculo" [disabled]="!anoFabricacao">
                     <option *ngFor="let ano of anoFabricacao" [value]="ano.codigo">{{ano.nome}}</option>
                     
                 </select> 
             </div>
         </div>
+        <!-- Input valor veiculo venda -->
         <div class="row mt-5">
             <div class="col col-sm-12 col-md-10">
                 <div class="input-group mb-3">
                     <span class="input-group-text">R$</span>
                     <input  type="text" mask="separator.0" thousandSeparator="." class="form-control"
                      formControlName="valorVeiculo"
-                     placeholder="Valor do veículo" aria-label="valor" aria-describedby="basic-addon1">
+                     placeholder="Valor do veículo" aria-label="valor" aria-describedby="basic-addon1" [disabled]="!dadosDoVeiculo">
                 </div>
             </div>
             <div class="col col-sm-10 col-md-2" >
-                <button type="button" class="btn btn-primary" (click)="pesquisar()">Calcular</button>
+                <button type="button" class="btn btn-primary" (click)="pesquisar()" [disabled]="formVeiculo.invalid">Calcular</button>
             </div>
         </div>
     </form>
