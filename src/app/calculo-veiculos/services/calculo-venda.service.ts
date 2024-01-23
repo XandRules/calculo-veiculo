@@ -6,7 +6,7 @@ import { CalculoVeiculo } from '../models/calculo-venda.model';
 enum MensagemEnum {
   'valorMedio' = 'Valor do veículo na média da tabela FIPE',
   'valorAcima' =  'Valor do veículo acima da tabela FIPE',
-  'valorAbaixo' =  'Valor do veículo na média da tabela FIPE'
+  'valorAbaixo' =  'Valor do veículo abaixo da tabela FIPE'
 }
 
 @Injectable({

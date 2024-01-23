@@ -56,18 +56,18 @@
 
             <!-- Mensagem -->
             <div class="d-flex flex-row bd-highlight justify-content-center m-0">
-                <p class="fw-bolder col-md-6 red">{{dadosVendaUsuario.mensagem}} </p>
+                <p class="fw-bolder col-md-6 yellow" [ngClass]="{'red': dadosVendaUsuario.percentual >= 10, 'green': dadosVendaUsuario.percentual <= -10}">{{dadosVendaUsuario.mensagem}} </p>
             </div>
             <!-- Fim Mensagem -->
 
             <!-- Porcentagem -->
             <div class="d-flex flex-row bd-highlight justify-content-center">
-                <p class="fw-bolder col-md-6 mensagem float-start red">{{dadosVendaUsuario.percentual}} %</p>
+                <p class="fw-bolder col-md-6 mensagem float-start yellow" [ngClass]="{'red': dadosVendaUsuario.percentual >= 10, 'green': dadosVendaUsuario.percentual <= -10}">{{dadosVendaUsuario.percentual}} %</p>
             </div>
             <!-- Fim Porcentagem -->
         </div>
 
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-primary" role="alert" [ngClass]="{'alert-danger': dadosVendaUsuario.percentual >= 10, 'alert-success': dadosVendaUsuario.percentual <= -10}">
             {{dadosVendaUsuario.mensagem}}
           </div>
     </div>
