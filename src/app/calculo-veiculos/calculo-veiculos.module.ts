@@ -6,6 +6,7 @@ import { DadosVeiculoComponent } from './components/dados-veiculo/dados-veiculo.
 import { ResultadoCalculoVeiculoComponent } from './components/resultado-calculo-veiculo/resultado-calculo-veiculo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     FormsModule,
     CalculoVeiculosRoutingModule,
     ReactiveFormsModule,
+    SharedModule,
     NgxMaskDirective,
     NgxMaskPipe
   ],
