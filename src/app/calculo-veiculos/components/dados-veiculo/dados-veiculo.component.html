@@ -50,9 +50,19 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text">R$</span>
                     <input  type="text" mask="separator.0" thousandSeparator="." class="form-control"
-                     formControlName="valorVeiculo"
+                     formControlName="valorVeiculo" maxlength="50"
                      placeholder="Valor do veículo" aria-label="valor" aria-describedby="basic-addon1" [disabled]="!dadosDoVeiculo">
                 </div>
+                <small>{{formVeiculo.get('valorVeiculo')?.value.length}} / 50</small>
+            </div>
+            <div class="col col-sm-12 col-md-10">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">R$</span>
+                    <input  type="text" class="form-control"
+                     formControlName="valorVeiculo" maxlength="50"
+                     placeholder="Valor do veículo" aria-label="valor" aria-describedby="basic-addon1" [disabled]="!dadosDoVeiculo">
+                </div>
+                <small>{{formVeiculo.get('valorVeiculo')?.value.length}} / 50</small>
             </div>
             <div class="col col-sm-10 col-md-2" >
                 <button type="button" class="btn btn-primary" (click)="pesquisar()" [disabled]="formVeiculo.invalid">Calcular</button>
